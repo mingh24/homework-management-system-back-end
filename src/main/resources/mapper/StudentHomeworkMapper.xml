@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yi.homework.dao.mapper.StudentHomeworkMapper">
+    <select id="count" resultType="Integer">
+        SELECT COUNT(*)
+        FROM student_homework
+        JOIN student s on student_homework.student_id = s.student_id
+        <where>
+            <if test="studentId != null and studentId != ''">
+                AND s.student_id LIKE CONCAT('%', #{studentId}, '%')
+            </if>
+            <if test="studentName != null and studentName != ''">
+                AND s.student_name LIKE CONCAT('%', #{studentName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getPage" resultType="com.yi.homework.model.vo.table.StudentHomeworkItemVO">
+        SELECT student_homework_id AS 'studentHomeworkId',
+        s.student_id AS 'studentId',
+        s.student_name AS 'studentName',
+        h.homework_id AS 'homeworkId',
+        h.homework_title AS 'homeworkTitle',
+        h.homework_content AS 'homeworkContent',
+        title AS 'title',
+        content AS 'content'
+        FROM student_homework
+        JOIN student s on student_homework.student_id = s.student_id
+        JOIN homework h on student_homework.homework_id = h.homework_id
+        <where>
+            <if test="studentId != null and studentId != ''">
+                AND s.student_id LIKE CONCAT('%', #{studentId}, '%')
+            </if>
+            <if test="studentName != null and studentName != ''">
+                AND s.student_name LIKE CONCAT('%', #{studentName}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

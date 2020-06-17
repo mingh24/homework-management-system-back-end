@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yi.homework.dao.mapper.HomeworkMapper">
+    <select id="count" resultType="Integer">
+        SELECT COUNT(*)
+        FROM homework
+        <where>
+            <if test="homeworkId != null and homeworkId != ''">
+                AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+            </if>
+            <if test="homeworkTitle != null and homeworkTitle != ''">
+                AND homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getPage" resultType="com.yi.homework.model.vo.table.HomeworkItemVO">
+        SELECT homework_id AS 'homeworkId',
+        teacher_id AS 'teacherId',
+        homework_title AS 'homeworkTitle',
+        homework_content AS 'homeworkContent'
+        FROM homework
+        <where>
+            <if test="homeworkId != null and homeworkId != ''">
+                AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+            </if>
+            <if test="homeworkTitle != null and homeworkTitle != ''">
+                AND homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
