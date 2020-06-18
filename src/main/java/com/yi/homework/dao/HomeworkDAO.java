@@ -3,7 +3,7 @@ package com.yi.homework.dao;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yi.homework.dao.mapper.HomeworkMapper;
 import com.yi.homework.model.entity.Homework;
-import com.yi.homework.model.vo.table.HomeworkItemVO;
+import com.yi.homework.model.vo.response.table.HomeworkItemVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

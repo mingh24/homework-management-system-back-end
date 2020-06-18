@@ -17,12 +17,14 @@
         </where>
     </select>
 
-    <select id="getPage" resultType="com.yi.homework.model.vo.table.HomeworkItemVO">
+    <select id="getPage" resultType="com.yi.homework.model.vo.response.table.HomeworkItemVO">
         SELECT homework_id AS 'homeworkId',
-        teacher_id AS 'teacherId',
+        t.teacher_id AS 'teacherId',
+        teacher_name AS 'teacherName',
         homework_title AS 'homeworkTitle',
         homework_content AS 'homeworkContent'
         FROM homework
+        JOIN teacher t on homework.teacher_id = t.teacher_id
         <where>
             <if test="homeworkId != null and homeworkId != ''">
                 AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')

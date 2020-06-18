@@ -17,17 +17,17 @@ import lombok.Data;
 @Data
 public class AuthInfoBO {
 
-    private Long id;
+    private Long userId;
 
-    private String name;
+    private String username;
 
     private String password;
 
     private Integer userType;
 
-    private AuthInfoBO(Long id, String name, String password, Integer userType) {
-        this.id = id;
-        this.name = name;
+    private AuthInfoBO(Long userId, String username, String password, Integer userType) {
+        this.userId = userId;
+        this.username = username;
         this.password = password;
         this.userType = userType;
     }

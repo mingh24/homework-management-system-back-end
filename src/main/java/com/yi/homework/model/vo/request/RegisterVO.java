@@ -1,4 +1,4 @@
-package com.yi.homework.model.vo;
+package com.yi.homework.model.vo.request;
 
 import com.yi.homework.model.constant.UserType;
 import lombok.Data;
@@ -9,18 +9,21 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Project Name: homework-management-system-back-end
- * File Name: LoginVO
- * Package Name: com.yi.homework.model.vo
+ * File Name: RegisterVO
+ * Package Name: com.yi.homework.model.vo.request
  *
  * @author yipple
- * @date 2020/6/15
+ * @date 2020/6/17
  * @since 0.0.1
  */
 @Data
-public class LoginVO {
+public class RegisterVO {
 
     @NotBlank(message = "账号不能为空")
-    private String id;
+    private String userId;
+
+    @NotBlank(message = "姓名不能为空")
+    private String username;
 
     @NotBlank(message = "密码不能为空")
     private String password;

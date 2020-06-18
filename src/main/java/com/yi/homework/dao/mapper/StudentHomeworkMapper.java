@@ -3,7 +3,7 @@ package com.yi.homework.dao.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yi.homework.model.entity.StudentHomework;
-import com.yi.homework.model.vo.table.StudentHomeworkItemVO;
+import com.yi.homework.model.vo.response.table.StudentHomeworkItemVO;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -18,7 +18,7 @@
         </where>
     </select>
 
-    <select id="getPage" resultType="com.yi.homework.model.vo.table.StudentHomeworkItemVO">
+    <select id="getPage" resultType="com.yi.homework.model.vo.response.table.StudentHomeworkItemVO">
         SELECT student_homework_id AS 'studentHomeworkId',
         s.student_id AS 'studentId',
         s.student_name AS 'studentName',

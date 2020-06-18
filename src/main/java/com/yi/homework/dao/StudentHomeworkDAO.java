@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yi.homework.dao.mapper.StudentHomeworkMapper;
 import com.yi.homework.model.entity.StudentHomework;
-import com.yi.homework.model.vo.table.StudentHomeworkItemVO;
+import com.yi.homework.model.vo.response.table.StudentHomeworkItemVO;
 import org.springframework.stereotype.Repository;
 
 /**

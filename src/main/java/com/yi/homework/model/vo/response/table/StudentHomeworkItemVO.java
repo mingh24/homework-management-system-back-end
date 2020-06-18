@@ -1,4 +1,4 @@
-package com.yi.homework.model.vo.table;
+package com.yi.homework.model.vo.response.table;
 
 import lombok.Data;
 
@@ -29,5 +29,7 @@ public class StudentHomeworkItemVO {
     private String title;
 
     private String content;
+
+    private String teacherComment;
 
 }
