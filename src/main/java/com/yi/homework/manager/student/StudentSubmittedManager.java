@@ -53,13 +53,13 @@ public class StudentSubmittedManager extends BaseManager {
         return studentHomeworkDAO.getStudentHomeworkVO(studentId, homeworkId);
     }
 
-    public Integer getPageCount(Long homeworkId, String homeworkTitle) {
-        int count = studentHomeworkDAO.countWithoutTeacherComment(homeworkId, homeworkTitle, null, null);
+    public Integer getPageCount(Long homeworkId, String homeworkTitle, Long studentId) {
+        int count = studentHomeworkDAO.countWithoutTeacherComment(homeworkId, homeworkTitle, studentId, null);
         return calculatePageNum(count, HomeworkDAO.PAGE_SIZE);
     }
 
-    public List<StudentHomeworkItemVO> getPage(Integer index, Long homeworkId, String homeworkTitle) {
-        return studentHomeworkDAO.getPageWithoutTeacherComment(index, homeworkId, homeworkTitle, null, null);
+    public List<StudentHomeworkItemVO> getPage(Integer index, Long homeworkId, String homeworkTitle, Long studentId) {
+        return studentHomeworkDAO.getPageWithoutTeacherComment(index, homeworkId, homeworkTitle, studentId, null);
     }
 
 }
