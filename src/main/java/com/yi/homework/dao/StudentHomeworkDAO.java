@@ -21,7 +21,7 @@ import java.util.List;
 @Repository
 public class StudentHomeworkDAO extends BaseDAO {
 
-    public static final int PAGE_SIZE = 20;
+    public static final int PAGE_SIZE = 7;
 
     private final StudentHomeworkMapper studentHomeworkMapper;
 
@@ -45,13 +45,22 @@ public class StudentHomeworkDAO extends BaseDAO {
         return studentHomeworkMapper.selectById(studentHomeworkId);
     }
 
-    public int count(Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
-        return studentHomeworkMapper.count(homeworkId, homeworkTitle, studentId, studentName);
+    public int count(Long teacherId, Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
+        return studentHomeworkMapper.count(teacherId, homeworkId, homeworkTitle, studentId, studentName);
     }
 
-    public List<StudentHomeworkItemVO> getPage(Integer index, Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
+    public List<StudentHomeworkItemVO> getPage(Integer index, Long teacherId, Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
         Page<StudentHomeworkItemVO> page = new Page<>(index, PAGE_SIZE);
-        return studentHomeworkMapper.getPage(page, homeworkId, homeworkTitle, studentId, studentName).getRecords();
+        return studentHomeworkMapper.getPage(page, teacherId, homeworkId, homeworkTitle, studentId, studentName).getRecords();
+    }
+
+    public int countWithTeacherComment(Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
+        return studentHomeworkMapper.countWithTeacherComment(homeworkId, homeworkTitle, studentId, studentName);
+    }
+
+    public List<StudentHomeworkItemVO> getPageWithTeacherComment(Integer index, Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
+        Page<StudentHomeworkItemVO> page = new Page<>(index, PAGE_SIZE);
+        return studentHomeworkMapper.getPageWithTeacherComment(page, homeworkId, homeworkTitle, studentId, studentName).getRecords();
     }
 
     public int countWithoutTeacherComment(Long homeworkId, String homeworkTitle, Long studentId, String studentName) {

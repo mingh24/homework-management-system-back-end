@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public class HomeworkDAO extends BaseDAO {
 
-    public static final int PAGE_SIZE = 20;
+    public static final int PAGE_SIZE = 7;
 
     private final HomeworkMapper homeworkMapper;
 

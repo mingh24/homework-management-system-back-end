@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TeacherDAO extends BaseDAO {
 
-    public static final int PAGE_SIZE = 20;
+    public static final int PAGE_SIZE = 7;
 
     private final TeacherMapper teacherMapper;
 
