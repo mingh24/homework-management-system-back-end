@@ -37,6 +37,7 @@ public class TeacherHomeworkManager extends BaseManager {
 
     public Boolean addHomeworkByVO(AddHomeworkItemVO addHomeworkItemVO) {
         Homework homework = new Homework();
+        homework.setTeacherId(addHomeworkItemVO.getTeacherId());
         homework.setHomeworkTitle(addHomeworkItemVO.getHomeworkTitle());
         homework.setHomeworkContent(addHomeworkItemVO.getHomeworkContent());
         return addHomework(homework);

@@ -37,10 +37,10 @@ public class TeacherSubmittedService extends BaseService {
     }
 
     public ResultVO getPageCount(Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
-        return result(teacherSubmittedManager.getPageCount(homeworkId, homeworkTitle, studentId, studentName));
+        return result(teacherSubmittedManager.getPageCount(getUserId(), homeworkId, homeworkTitle, studentId, studentName));
     }
 
     public ResultVO getPage(Integer index, Long homeworkId, String homeworkTitle, Long studentId, String studentName) {
-        return result(teacherSubmittedManager.getPage(index, homeworkId, homeworkTitle, studentId, studentName));
+        return result(teacherSubmittedManager.getPage(index, getUserId(), homeworkId, homeworkTitle, studentId, studentName));
     }
 }
