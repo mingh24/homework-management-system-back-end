@@ -1,18 +1,18 @@
-package com.yi.homework.model.vo.response.table;
+package com.yi.homework.model.vo.request;
 
 import lombok.Data;
 
 /**
  * Project Name: homework-management-system-back-end
- * File Name: StudentHomeworkItemVO
- * Package Name: com.yi.homework.model.vo.table
+ * File Name: UpdateStudentHomeworkItemVO
+ * Package Name: com.yi.homework.model.vo.request
  *
  * @author yipple
- * @date 2020/6/17
+ * @date 2020/6/18
  * @since 0.0.1
  */
 @Data
-public class StudentHomeworkItemVO {
+public class UpdateStudentHomeworkItemVO {
 
     private Long studentHomeworkId;
 
@@ -33,7 +33,5 @@ public class StudentHomeworkItemVO {
     private String title;
 
     private String content;
-
-    private String teacherComment;
 
 }

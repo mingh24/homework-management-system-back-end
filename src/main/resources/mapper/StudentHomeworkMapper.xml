@@ -8,7 +8,14 @@
         SELECT COUNT(*)
         FROM student_homework
         JOIN student s on student_homework.student_id = s.student_id
+        JOIN homework h on student_homework.homework_id = h.homework_id
         <where>
+            <if test="homeworkId != null and homeworkId != ''">
+                AND h.homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+            </if>
+            <if test="homeworkTitle != null and homeworkTitle != ''">
+                AND h.homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+            </if>
             <if test="studentId != null and studentId != ''">
                 AND s.student_id LIKE CONCAT('%', #{studentId}, '%')
             </if>
@@ -26,11 +33,18 @@
         h.homework_title AS 'homeworkTitle',
         h.homework_content AS 'homeworkContent',
         title AS 'title',
-        content AS 'content'
+        content AS 'content',
+        teacher_comment AS 'teacherComment'
         FROM student_homework
         JOIN student s on student_homework.student_id = s.student_id
         JOIN homework h on student_homework.homework_id = h.homework_id
         <where>
+            <if test="homeworkId != null and homeworkId != ''">
+                AND h.homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+            </if>
+            <if test="homeworkTitle != null and homeworkTitle != ''">
+                AND h.homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+            </if>
             <if test="studentId != null and studentId != ''">
                 AND s.student_id LIKE CONCAT('%', #{studentId}, '%')
             </if>
@@ -38,5 +52,71 @@
                 AND s.student_name LIKE CONCAT('%', #{studentName}, '%')
             </if>
         </where>
+    </select>
+
+    <select id="countWithoutTeacherComment" resultType="Integer">
+        SELECT COUNT(*)
+        FROM student_homework
+        JOIN student s on student_homework.student_id = s.student_id
+        JOIN homework h on student_homework.homework_id = h.homework_id
+        WHERE teacher_comment IS NULL
+        <if test="homeworkId != null and homeworkId != ''">
+            AND h.homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+        </if>
+        <if test="homeworkTitle != null and homeworkTitle != ''">
+            AND h.homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+        </if>
+        <if test="studentId != null and studentId != ''">
+            AND s.student_id LIKE CONCAT('%', #{studentId}, '%')
+        </if>
+        <if test="studentName != null and studentName != ''">
+            AND s.student_name LIKE CONCAT('%', #{studentName}, '%')
+        </if>
+    </select>
+
+    <select id="getPageWithoutTeacherComment"
+            resultType="com.yi.homework.model.vo.response.table.StudentHomeworkItemVO">
+        SELECT student_homework_id AS 'studentHomeworkId',
+        s.student_id AS 'studentId',
+        s.student_name AS 'studentName',
+        h.homework_id AS 'homeworkId',
+        h.homework_title AS 'homeworkTitle',
+        h.homework_content AS 'homeworkContent',
+        title AS 'title',
+        content AS 'content',
+        teacher_comment AS 'teacherComment'
+        FROM student_homework
+        JOIN student s on student_homework.student_id = s.student_id
+        JOIN homework h on student_homework.homework_id = h.homework_id
+        WHERE teacher_comment IS NULL
+        <if test="homeworkId != null and homeworkId != ''">
+            AND h.homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+        </if>
+        <if test="homeworkTitle != null and homeworkTitle != ''">
+            AND h.homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+        </if>
+        <if test="studentId != null and studentId != ''">
+            AND s.student_id LIKE CONCAT('%', #{studentId}, '%')
+        </if>
+        <if test="studentName != null and studentName != ''">
+            AND s.student_name LIKE CONCAT('%', #{studentName}, '%')
+        </if>
+    </select>
+
+    <select id="getStudentHomework" resultType="com.yi.homework.model.vo.response.table.StudentHomeworkItemVO">
+        SELECT student_homework_id AS 'studentHomeworkId',
+               s.student_id        AS 'studentId',
+               s.student_name      AS 'studentName',
+               h.homework_id       AS 'homeworkId',
+               h.homework_title    AS 'homeworkTitle',
+               h.homework_content  AS 'homeworkContent',
+               title               AS 'title',
+               content             AS 'content',
+               teacher_comment     AS 'teacherComment'
+        FROM student_homework
+                 JOIN student s on student_homework.student_id = s.student_id
+                 JOIN homework h on student_homework.homework_id = h.homework_id
+        WHERE s.student_id = #{studentId}
+          AND h.homework_id = #{homeworkId}
     </select>
 </mapper>

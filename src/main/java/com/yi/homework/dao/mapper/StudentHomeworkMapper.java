@@ -18,8 +18,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentHomeworkMapper extends BaseMapper<StudentHomework> {
 
-    Integer count(Long studentId, String studentName);
+    Integer count(Long homeworkId, String homeworkTitle, Long studentId, String studentName);
 
-    IPage<StudentHomeworkItemVO> getPage(IPage<StudentHomeworkItemVO> page, Long studentId, String studentName);
+    IPage<StudentHomeworkItemVO> getPage(IPage<StudentHomeworkItemVO> page, Long homeworkId, String homeworkTitle, Long studentId, String studentName);
+
+    Integer countWithoutTeacherComment(Long homeworkId, String homeworkTitle, Long studentId, String studentName);
+
+    IPage<StudentHomeworkItemVO> getPageWithoutTeacherComment(IPage<com.yi.homework.model.vo.response.table.StudentHomeworkItemVO> page, Long homeworkId, String homeworkTitle, Long studentId, String studentName);
+
+    StudentHomeworkItemVO getStudentHomework(Long studentId, Long homeworkId);
 
 }
