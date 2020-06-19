@@ -34,4 +34,79 @@
             </if>
         </where>
     </select>
+
+    <select id="countStudentRestHomework" resultType="Integer">
+        SELECT COUNT(*)
+        FROM homework h
+        WHERE h.homework_id NOT IN (
+        SELECT homework_id
+        FROM student_homework
+        WHERE student_id = #{studentId} )
+        <if test="homeworkId != null and homeworkId != ''">
+            AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+        </if>
+        <if test="homeworkTitle != null and homeworkTitle != ''">
+            AND homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+        </if>
+    </select>
+
+    <select id="getStudentRestHomeworkPage" resultType="com.yi.homework.model.vo.response.table.HomeworkItemVO">
+        SELECT homework_id AS 'homeworkId',
+        t.teacher_id AS 'teacherId',
+        teacher_name AS 'teacherName',
+        homework_title AS 'homeworkTitle',
+        homework_content AS 'homeworkContent'
+        FROM homework
+        JOIN teacher t on homework.teacher_id = t.teacher_id
+        WHERE homework_id NOT IN (
+        SELECT homework_id
+        FROM student_homework
+        WHERE student_id = #{studentId} )
+        <if test="homeworkId != null and homeworkId != ''">
+            AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+        </if>
+        <if test="homeworkTitle != null and homeworkTitle != ''">
+            AND homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+        </if>
+    </select>
+
+    <select id="countTeacherHomework" resultType="Integer">
+        SELECT COUNT(*)
+        FROM homework h
+        WHERE teacher_id = #{teacherId}
+        <if test="homeworkId != null and homeworkId != ''">
+            AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+        </if>
+        <if test="homeworkTitle != null and homeworkTitle != ''">
+            AND homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+        </if>
+    </select>
+
+    <select id="getTeacherHomeworkPage" resultType="com.yi.homework.model.vo.response.table.HomeworkItemVO">
+        SELECT homework_id AS 'homeworkId',
+        t.teacher_id AS 'teacherId',
+        teacher_name AS 'teacherName',
+        homework_title AS 'homeworkTitle',
+        homework_content AS 'homeworkContent'
+        FROM homework
+        JOIN teacher t on homework.teacher_id = t.teacher_id
+        WHERE t.teacher_id = #{teacherId}
+        <if test="homeworkId != null and homeworkId != ''">
+            AND homework_id LIKE CONCAT('%', #{homeworkId}, '%')
+        </if>
+        <if test="homeworkTitle != null and homeworkTitle != ''">
+            AND homework_title LIKE CONCAT('%', #{homeworkTitle}, '%')
+        </if>
+    </select>
+
+    <select id="getHomeworkItemVO" resultType="com.yi.homework.model.vo.response.table.HomeworkItemVO">
+        SELECT homework_id      AS 'homeworkId',
+               t.teacher_id     AS 'teacherId',
+               teacher_name     AS 'teacherName',
+               homework_title   AS 'homeworkTitle',
+               homework_content AS 'homeworkContent'
+        FROM homework
+                 JOIN teacher t on homework.teacher_id = t.teacher_id
+        WHERE homework_id = #{homeworkID}
+    </select>
 </mapper>
